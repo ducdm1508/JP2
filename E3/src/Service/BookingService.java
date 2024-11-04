@@ -28,35 +28,29 @@ public class BookingService implements IGeneral<Booking> {
 
     @Override
     public Map<RoomType, Double> calculateRevenueByRoomType() {
-
-        Map<RoomType, Double> revenueByRoomType = new HashMap<>();
-
-        bookings.stream()
-                .filter(booking -> booking.getRoom() != null)
-                .forEach(booking -> {
-                    RoomType roomType = booking.getRoom().getRoomType();
-                    double revenue = booking.getHourBooked() * booking.getRoom().getPricePerHour();
-
-
-                    revenueByRoomType.put(roomType, revenueByRoomType.getOrDefault(roomType, 0.0) + revenue);
-                });
-
+        Map<RoomType, Double> revenueByRoomType = bookings.stream()
+                .collect(Collectors.groupingBy(
+                        booking -> booking.getRoom().getRoomType(),
+                        Collectors.summingDouble(booking -> booking.getHourBooked() * booking.getRoom().getPricePerHour())
+                ));
         return revenueByRoomType;
     }
 
     @Override
     public Map<RoomType, Double> getTopRevenueRoomType2023() {
-        Map<RoomType, Double> revenueByRoomType = new HashMap<>();
-        bookings.stream()
+
+        Map<RoomType, Double> revenueByRoomType = bookings.stream()
                 .filter(booking -> booking.getCheckInDateTime().getYear() == 2023)
-                .forEach(booking -> {
-                    RoomType roomType = booking.getRoom().getRoomType();
-                    double revenue = booking.getHourBooked() * booking.getRoom().getPricePerHour();
+                .collect(Collectors.groupingBy(
+                        booking -> booking.getRoom().getRoomType(),
+                        Collectors.summingDouble(booking -> booking.getHourBooked() * booking.getRoom().getPricePerHour())
+                ));
 
+        Optional<Map.Entry<RoomType, Double>> topRevenueRoomType = revenueByRoomType.entrySet().stream()
+                .collect(Collectors.maxBy(Map.Entry.comparingByValue()));
 
-                    revenueByRoomType.put(roomType, revenueByRoomType.getOrDefault(roomType, 0.0) + revenue);
-                });
-        return revenueByRoomType;
+        return topRevenueRoomType.map(entry -> Map.of(entry.getKey(), entry.getValue()))
+                .orElseGet(HashMap::new);
     }
 
 

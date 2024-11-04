@@ -23,7 +23,7 @@ public class Main {
         rooms.add(new Room(2, "RD001", RoomType.D, 12.0));
         rooms.add(new Room(3, "RQ002", RoomType.Q, 35.0));
         rooms.add(new Room(4, "RT001", RoomType.T, 12.5));
-        rooms.add(new Room(5, "RQ001", RoomType.Q, 20.5));
+        rooms.add(new Room(5, "RQ001", RoomType.QU, 20.5));
 
         customers.add(new Customer(1, "Mr.Linus Torvald", "84125325346457"));
         customers.add(new Customer(2, "Mr.Bill", "91124235346467"));
@@ -64,5 +64,8 @@ public class Main {
 
         Map<RoomType, Double> revenueByRoomType = bookingController.getRevenueByRoomType();
         System.out.println(revenueByRoomType);
+
+        Map<RoomType, Double> topRevenueRoomType2023 = bookingController.getTopRevenueRoomType2023();
+        System.out.println(topRevenueRoomType2023);
     }
 }

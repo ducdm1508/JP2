@@ -51,7 +51,7 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", code='" + code + '\'' +
-                ", roomType=" + roomType +
+                ", roomType=" + roomType.getType() +
                 ", pricePerHour=" + pricePerHour +
                 '}';
     }

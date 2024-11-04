@@ -22,4 +22,7 @@ public class BookingController {
         return bookingService.calculateRevenueByRoomType();
     }
 
+    public Map<RoomType, Double> getTopRevenueRoomType2023() {
+        return bookingService.getTopRevenueRoomType2023();
+    }
 }
