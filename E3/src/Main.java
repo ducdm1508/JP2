@@ -4,6 +4,8 @@ import Entity.Customer;
 import Entity.Room;
 import Entity.RoomType;
 import Service.BookingService;
+import Service.CustomerService;
+import Service.RoomService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,14 +18,20 @@ public class Main {
         List<Customer> customers = new ArrayList<>();
         List<Booking> bookings = new ArrayList<>();
 
+        CustomerService customerSeviece = new CustomerService(customers);
+        RoomService roomService = new RoomService(rooms);
+
         BookingService bookingService = new BookingService(bookings);
-        BookingController bookingController = new BookingController(bookingService);
+        BookingController bookingController = new BookingController(bookingService, roomService, customerSeviece);
 
         rooms.add(new Room(1, "RS001", RoomType.S, 8.0));
         rooms.add(new Room(2, "RD001", RoomType.D, 12.0));
         rooms.add(new Room(3, "RQ002", RoomType.Q, 35.0));
         rooms.add(new Room(4, "RT001", RoomType.T, 12.5));
-        rooms.add(new Room(5, "RQ001", RoomType.QU, 20.5));
+        rooms.add(new Room(5, "RT002", RoomType.T, 12.5));
+        rooms.add(new Room(6, "RS002", RoomType.S, 12.5));
+        rooms.add(new Room(7, "RD002", RoomType.D, 12.5));
+        rooms.add(new Room(8, "RQ001", RoomType.QU, 20.5));
 
         customers.add(new Customer(1, "Mr.Linus Torvald", "84125325346457"));
         customers.add(new Customer(2, "Mr.Bill", "91124235346467"));
@@ -67,5 +75,7 @@ public class Main {
 
         Map<RoomType, Double> topRevenueRoomType2023 = bookingController.getTopRevenueRoomType2023();
         System.out.println(topRevenueRoomType2023);
+
+        bookingController.createBooking();
     }
 }

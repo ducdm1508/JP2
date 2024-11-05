@@ -18,6 +18,10 @@ public class BookingService implements IGeneral<Booking> {
         this.bookings = bookings;
     }
 
+    public void add(Booking booking){
+        booking.setId(bookings.size() + 1);
+        bookings.add(booking);
+    }
     public Booking findBookingByCustomerInfo(String customerName, String customerPhone, String roomId) {
         Optional<Booking> found = bookings.stream()
                 .filter(bk -> bk.getCustomer().getName().contains(customerName) &&
@@ -51,6 +55,12 @@ public class BookingService implements IGeneral<Booking> {
 
         return topRevenueRoomType.map(entry -> Map.of(entry.getKey(), entry.getValue()))
                 .orElseGet(HashMap::new);
+    }
+
+    public Optional<Booking> findBookingByRoomCode(String roomCode) {
+        return bookings.stream()
+                .filter(booking -> booking.getRoom().getCode().equals(roomCode))
+                .findFirst();
     }
 
 

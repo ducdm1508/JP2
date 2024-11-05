@@ -68,8 +68,8 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", room=" + room.getCode() +
-                ", customer=" + customer.getId() +
+                ", room=" + room +
+                ", customer=" + customer +
                 ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 '}';
