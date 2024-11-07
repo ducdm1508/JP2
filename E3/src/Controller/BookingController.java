@@ -45,7 +45,7 @@ public class BookingController {
 
         List<Room> availableRooms = roomService.getRoomByType(roomTypeInput);
 
-        if (availableRooms.isEmpty()) {
+        if (availableRooms.size() == 0) {
             System.out.println("There are no rooms of this type.");
             return;
         } else {
@@ -57,8 +57,10 @@ public class BookingController {
         String roomCode = scanner.nextLine();
         Optional<Room> roomOptional = roomService.getRoomByCode(roomCode);
 
-        if (roomOptional.isEmpty()) {
-            System.out.println("Room not found.");
+        if (roomOptional.isPresent()) {
+            roomOptional.get();
+        }else {
+            System.out.println("Room not found");
             return;
         }
 
