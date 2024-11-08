@@ -68,9 +68,9 @@ public class BookingService implements IGeneral<Booking> {
         return bookings.stream()
                 .filter(booking ->
                         booking.getRoom().getCode().equals(newBooking.getRoom().getCode()))
-                .anyMatch(existingBooking ->
-                        (newBooking.getCheckInDateTime().isBefore(existingBooking.getCheckOutDateTime()) &&
-                                newBooking.getCheckOutDateTime().isAfter(existingBooking.getCheckInDateTime())));
+                .anyMatch(booking ->
+                        (newBooking.getCheckInDateTime().isBefore(booking.getCheckOutDateTime()) &&
+                                newBooking.getCheckOutDateTime().isAfter(booking.getCheckInDateTime())));
     }
 
 
