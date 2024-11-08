@@ -5,6 +5,7 @@ import Entity.Customer;
 import Entity.RoomType;
 import iGeneral.IGeneral;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,15 @@ public class BookingService implements IGeneral<Booking> {
         return bookings.stream()
                 .filter(booking -> booking.getRoom().getCode().equals(roomCode))
                 .findFirst();
+    }
+
+    public boolean isRoomBookedDuringPeriod(Booking newBooking) {
+        return bookings.stream()
+                .filter(booking ->
+                        booking.getRoom().getCode().equals(newBooking.getRoom().getCode()))
+                .anyMatch(existingBooking ->
+                        (newBooking.getCheckInDateTime().isBefore(existingBooking.getCheckOutDateTime()) &&
+                                newBooking.getCheckOutDateTime().isAfter(existingBooking.getCheckInDateTime())));
     }
 
 

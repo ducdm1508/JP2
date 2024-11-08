@@ -7,6 +7,7 @@ import Entity.RoomType;
 import Service.BookingService;
 import Service.CustomerService;
 import Service.RoomService;
+import Validator.Validation;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -70,9 +71,26 @@ public class BookingController {
             return;
         }
 
-        Optional<Booking> bookingOptional = bookingService.findBookingByRoomCode(roomCode);
-        if (bookingOptional.isPresent()) {
-            System.out.println("The room has already been booked.");
+        System.out.print("Enter check-in date and time (YYYY-MM-DDTHH:MM): ");
+        LocalDateTime checkInDateTime = LocalDateTime.parse(scanner.nextLine());
+
+        if(!Validation.isCheckIn(checkInDateTime)){
+            System.out.println("Invalid check-in time. Please enter again.");
+            return;
+        }
+
+        System.out.print("Enter check-out date and time (YYYY-MM-DDTHH:MM): ");
+        LocalDateTime checkOutDateTime = LocalDateTime.parse(scanner.nextLine());
+
+        if (!Validation.isCheckOut(checkInDateTime, checkOutDateTime)) {
+            System.out.println("Please enter a check-out time that is after the check-in time.");
+            return;
+        }
+
+        Booking tempBooking = new Booking(0, room, null, checkInDateTime, checkOutDateTime);
+
+        if (bookingService.isRoomBookedDuringPeriod(tempBooking)) {
+            System.out.println("The room is already booked during the selected period.");
             return;
         }
 
@@ -80,10 +98,7 @@ public class BookingController {
         String customerName = scanner.nextLine();
         System.out.print("Enter customer phone: ");
         String customerPhone = scanner.nextLine();
-        System.out.print("Enter check-in date and time (YYYY-MM-DDTHH:MM): ");
-        LocalDateTime checkInDateTime = LocalDateTime.parse(scanner.nextLine());
-        System.out.print("Enter check-out date and time (YYYY-MM-DDTHH:MM): ");
-        LocalDateTime checkOutDateTime = LocalDateTime.parse(scanner.nextLine());
+
 
         Customer customer = new Customer(customerService.getNextId(), customerName, customerPhone);
         Booking newBooking = new Booking(0, room, customer, checkInDateTime, checkOutDateTime);
