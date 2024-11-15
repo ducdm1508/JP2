@@ -1,18 +1,17 @@
 package Entity;
 
 public class Product {
-
     private int id;
     private String name;
-    private int quantity;
     private double price;
+    private int quantity;
 
     public Product() {;}
-    public Product(int id, String name, int quantity, double price) {
+    public Product(int id, String name, double price, int quantity) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -31,14 +30,6 @@ public class Product {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -47,9 +38,21 @@ public class Product {
         this.price = price;
     }
 
-    public String toString(String separator) {
-        StringBuilder stb = new StringBuilder();
-        stb.append(id).append(separator).append(name).append(separator).append(quantity).append(separator).append(price);
-        return stb.toString();
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }

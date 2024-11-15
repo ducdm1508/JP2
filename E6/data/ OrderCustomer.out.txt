@@ -1,0 +1,2 @@
+OrderDetail{id=1, order=Order{id=1, customer=Customer{id=1, name='Nguyen Van A'}, orderDate=2024-11-15T21:31:51.242157100}, product=Product{id=2, name='Samsung', price=500.0, quantity=50}, quantity=2, price=1000.0}
+OrderDetail{id=2, order=Order{id=2, customer=Customer{id=1, name='Nguyen Van A'}, orderDate=2024-11-15T21:31:51.242157100}, product=Product{id=1, name='Iphone', price=1000.0, quantity=50}, quantity=3, price=3000.0}

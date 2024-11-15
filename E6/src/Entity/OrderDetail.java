@@ -7,9 +7,8 @@ public class OrderDetail {
     private int quantity;
     private double price;
 
-    public OrderDetail() {}
-
-    public OrderDetail(int id, Order order, Product product, int quantity) {
+    public OrderDetail() {;}
+    public OrderDetail(int id, Order order, Product product, int quantity, double price) {
         this.id = id;
         this.order = order;
         this.product = product;
@@ -21,7 +20,7 @@ public class OrderDetail {
         return id;
     }
 
-    public String setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -29,25 +28,42 @@ public class OrderDetail {
         return order;
     }
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public Product getProduct() {
         return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public double getPrice() {
         return price;
     }
 
-    public String toString(String separator) {
-        StringBuilder stb = new StringBuilder();
-        stb.append(id).append(separator)
-                .append(order).append(separator)
-                .append(product).append(separator)
-                .append(quantity).append(separator)
-                .append(price);
-        return stb.toString();
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", order=" + order +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }

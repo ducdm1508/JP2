@@ -8,6 +8,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     public Order(){;}
+
     public Order(int id, Customer customer, LocalDateTime orderDate) {
         this.id = id;
         this.customer = customer;
@@ -38,9 +39,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String toString(String separator) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(id).append(separator).append(customer).append(separator).append(orderDate);
-        return stringBuilder.toString();
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", orderDate=" + orderDate +
+                '}';
     }
 }
