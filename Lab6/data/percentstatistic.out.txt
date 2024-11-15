@@ -1,0 +1,7 @@
+PCStatistics{id=1, percentView=44.052863436123346, percentAddToCard=15.384615384615385, percentCheckOut=28.571428571428573, datetime=2024-02-15}
+PCStatistics{id=1, percentView=5.286343612334802, percentAddToCard=0.0, percentCheckOut=0.0, datetime=2024-02-25}
+PCStatistics{id=1, percentView=50.66079295154185, percentAddToCard=84.61538461538461, percentCheckOut=71.42857142857143, datetime=2024-02-10}
+PCStatistics{id=1, percentView=100.0, percentAddToCard=100.0, percentCheckOut=100.0, datetime=2024-03-15}
+PCStatistics{id=2, percentView=100.0, percentAddToCard=100.0, percentCheckOut=100.0, datetime=2024-03-15}
+PCStatistics{id=2, percentView=4.761904761904762, percentAddToCard=76.92307692307692, percentCheckOut=28.571428571428573, datetime=2024-02-28}
+PCStatistics{id=2, percentView=95.23809523809524, percentAddToCard=23.076923076923077, percentCheckOut=71.42857142857143, datetime=2024-02-20}
